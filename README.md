@@ -28,8 +28,11 @@ Note: Due to the complexity of deploying to Google Compute Engine (that would be
 
 ### Requirements:
 •	Git
+
 •	Python 3.7+ (installed on your PC and VMs)
+
 •	3 Linux VMs/hosts (1 gateway, 2 worker nodes)
+
 •	1 PC (to connect to gateway and nodes)
 ### Step 1:
 To begin, we will need to clone the git repository into each VM. We will need at least 3 VMs, one for the gateway, two for worker nodes, just like our prototype. To clone the repository execute the following command on each VM:
