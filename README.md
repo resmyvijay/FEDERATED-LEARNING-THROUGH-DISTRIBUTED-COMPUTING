@@ -39,25 +39,37 @@ To begin, we will need to clone the git repository into each VM. We will need at
 git clone https://github.com/OpenMined/PyGrid.git
 ### Step 2:
 We then enter the PyGrid directory on each VM and install the perquisites:
+
 cd PyGrid
+
 pip install -r requirements.txt
 ### Step 3:
 On the gateway VM, execute the following:
+
 cd gateway
+
 python gateway.py –start_local_db –port=8080
 ### Step 4:
 Ensure to take down the gate way IP address as you will now need to replace <gateway ip> with the actual IP of the VM.
 On worker node 1, execute the following:
+  
 cd app/websocket/
+  
 python websocket_app.py –start_local_db –id=worker1 –port=3001 –gateway_url=http://<gateway IP>:8080
+  
 On worker node 2, execute the following:
+  
 cd app/websocket/
+  
 python websocket_app.py –start_local_db –id=worker2 –port=3001 –gateway_url=http://<gateway IP>:8080
 ### Step 5:
 Ensure to take down the worker node IP addresses as you will now need to replace the <worker1 IP> and <worker2 IP> with the actual IP of the VMs.
 From the submitted project files for this report, execute the following script on your PC. Note that we only upload the data to the nodes, not the gateway:
+  
 python upload_data.py -node1 <worker1 IP> -node2 <worker2 IP>
+  
 python train_model.py -gw <gateway IP>
+  
 After approximately 20mins, you should receive similar output as shown by the prototype.
 ## Conclusion
 In this project we’ve demonstrated that it is possible to train a model with decent accuracy on distributed nodes. The gateway node is not privy to the information stored by the worker nodes, but is able to train and test the neural network model through each node. The nodes were also able to train the model without either node knowing what data the other node has. This implementation serves as an example of a practical way to perform deep learning using distributed nodes in a federated learning setup, for the purpose of detecting spam text messages without revealing the data from users (nodes).  
